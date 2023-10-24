@@ -1,22 +1,23 @@
-import React from 'react'
-import { MutatingDots } from 'react-loader-spinner'
+import React from "react";
+import { Oval } from 'react-loader-spinner'
 
 const Loading = () => {
   return (
-    <div className='loading'>
-        <MutatingDots 
-            height="100"
-            width="100"
-            color="#4fa94d"
-            secondaryColor= '#4fa94d'
-            radius='12.5'
-            ariaLabel="mutating-dots-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-        />
+    <div className="loading">
+      <Oval
+        height={80}
+        width={80}
+        color="#a90c0c"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+        ariaLabel="oval-loading"
+        secondaryColor="#a90c0c"
+        strokeWidth={2}
+        strokeWidthSecondary={2}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Loading
+export default Loading;

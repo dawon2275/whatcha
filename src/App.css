@@ -1,126 +1,322 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css");
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
 
 body {
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  background: #000;
-  color: rgba(255,255,255,0.7)
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    background: #000;
+    color: #eee;
+    font-weight: 400;
 }
 
-* {box-sizing: border-box;}
-li {list-style: none;}
+li {list-style-type: none;}
 a {text-decoration: none; color: inherit}
-
-/* loading */
 .loading {
-  height: calc(100vh - 120px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* menu */
-.nav-area {margin-left: 30px;}
-.navbar {padding: 0 2.5%}
-.nav-item {
-  margin: 20px;
-  color: #a2a2a2;
-}
-.nav-item:hover {color: #fff;}
+.navbar {padding: 0 2.5%; box-sizing: border-box;}
+.nav-item {margin: 20px; color: #a2a2a2;}
+.nav-item:hover { color: #fff}
 
-/* banner */
+/* main-banner */
 .banner {
-  height: 860px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
+    height: 920px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
 }
 .banner:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 860px;
-  background: linear-gradient(to right, rgba(0,0,0,0.7), transparent);
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 920px;
+    background: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent),
+    linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent 25%);
 }
 .banner-info {
-  position: relative;
-  width: 40%;
-  margin-left: 5%;
-  z-index: 1;
+    position: relative;
+    width: 40%;
+    margin-left: 5%;
+    z-index: 1;
 }
 .banner-info h1 {
-  font-size: 100px;
-  font-weight: 600;
-  margin-bottom: 20px;
+    font-size: 100px;
+    font-weight: 600;
+    margin-bottom: 20px;
 }
 .banner-info p {
-  font-size: 20px;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.75);
+    font-size: 20px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.7)
 }
-
-/* contents->home.js */
-.contents {}
-
+/* slide */
+.contents {
+    margin: 0 auto 0;
+    padding: 0 100px;
+    overflow: hidden;
+}
 .contents h2 {
-  margin-left: 2%;
-  margin-bottom: 20px;
-  font-size: 30px;
-  font-size: 400;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 400;
 }
-/* card - MovieCard.js */
-.react-multi-carousel-list {overflow: inherit!important}
+
+/* card */
+.react-multi-carousel-list {
+  overflow: unset!important;
+}
+.carousel-container {
+  position: relative;
+  z-index: 1;
+}
+
+.each-slider {
+  position: relative;
+  transition: transform 0.5s ease, z-index 0.1s ease; /* 마우스 오버 시 크기 조절 및 z-index 트랜지션 효과 */
+  z-index: 100;
+}
+
+.each-slider:hover {
+  transform: scale(1.2) translateX(5px); /* 마우스 오버 시 크기를 1.5배로 조절 */
+ /* 마우스 오버 시 z-index 값을 높여 현재 카드를 맨 위로 올림 */
+}
+
 .card {
   position: relative;
-  width: auto;
+  width: 300px;
   height: 200px;
   margin-bottom: 50px;
   border-color: #333;
-  transition: 0.3s;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  overflow: unset;
 }
 
-.card .card-overlay {
-  background: rgba(0,0,0,0.7);
+.overlay {
+  position: absolute;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100%;
   color: #fff;
   padding: 20px;
   box-sizing: border-box;
-  opacity: 0;
   transition: all 0.3s;
 }
 
-.card:hover .card-overlay {
+.each-slider:hover .card {
+  z-index: 10; /* 마우스 오버 시 z-index 값을 높여 현재 카드를 맨 위로 올림 */
+}
+
+.card:hover .overlay {
   opacity: 1;
 }
-.card .card-overlay h1 {
-  font-size: 24px;
+
+.overlay h1 {
+  font-size: 1.5em;
   font-weight: 500;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
-.card .card-overlay .vote-group span {
-  margin: 0 5px;
-  font-size: 14px;
+
+.overlay .genre {
+  margin-bottom: 10px;
+}
+
+.overlay .genre span {
+  margin: 5px 3px;
+  font-size: 12px;
+}
+.overlay .social-group {
+  display: flex;
+  padding-left: 5px;
+}
+.overlay  .social-group li {
+  margin-right: 10px;
+  font-size: 13px;
+}
+.overlay .imdb {
   padding: 3px 4px;
-  border-radius: 2px;
-  margin: 0 5px;
+  background: #ffcc00;
+  font-size: 8px;
+  color: #000;
+  border-radius: 3px;
+  margin-right: 5px;
 }
-.card .card-overlay .vote-group span + span {
-  background: #ce0909;
-  color: #fff;
+.overlay .users-icon {
+  font-size: 13px;
+  color: slategray;
+  margin-right: 8px;
 }
-.detail-section {
-  padding: 100px 0;
+.overlay  .users-text {font-size: 12px;}
+.adult-info {
+  font-style: italic;
+  font-weight: 900;
+  color: #E50914;
 }
+.react-multi-carousel-dot button {
+  width: 20px; height: 4px;
+  border: none;
+  background: rgba(255,255,255,0.3);
+  border-radius: 0;
+}
+.react-multi-carousel-dot--active button {
+  background: #fff;
+}
+/* 디테일 페이지 */
+.detail_section {
+    padding: 80px 0 30px;
+  }
+  
+.detail_img_card {
+    display: flex;
+    align-items: center;
+}
+  
 .detail-img {
-  width: 100%;
-  height: 600px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+    width: 600px;
+    height: 900px;
 }
+  
+.details-genres {
+  display: flex;
+  padding-left: 0;
+}
+.details-genres li {
+  padding: 3px 10px;
+  background: #E50914;
+  color: #fff;
+  border-radius: 10px;
+  margin-right: 8px;
+}
+ .detail_title {
+    font-size: 40px;
+    font-family: "Croissant One";
+    margin-bottom: 20px;
+  }
+  
+  .detail_tagline {
+    font-family: "Inclusive Sans", sans-serif;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  
+  .detail_overview {
+    font-size: 18px;
+    line-height: 1.6;
+    font-family: "Inclusive Sans", sans-serif;
+    margin-bottom: 20px;
+    font-weight: 200;
+  }
+  .detail_info .social-group {display: flex; padding: 0; margin-bottom: 0;}
+  .detail_info .social-group li {margin-right: 25px;}
+  .detail_info .imdb {
+    padding: 3px 4px;
+    background: #ffcc00;
+    font-size: 12px;
+    color: #000;
+    border-radius: 3px;
+    margin-right: 10px;
+  }
+  .detail_info .users-icon {
+    font-size: 16px;
+    color: slategray;
+    margin-right: 8px;
+  }
+  .detail_info  .users-text {font-size: 16px;}
+  .detail_info .adult-info {font-size: 20px; line-height: 1;}
+
+  .detail_info {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .detail_info div {
+    margin-right: 30px;
+    font-family: "Inclusive Sans", sans-serif;
+    font-size: 25px;
+    margin-left: 10px;
+  }
+  
+  .detail_star {
+    font-size: 30px;
+  }
+  
+  .detail_Users {
+    font-size: 30px;
+  }
+  
+  .detail_info2 {
+    margin: 20px 0;
+  }
+  
+  .detail_info2 div {
+    padding: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-family: "Inclusive Sans", sans-serif;
+  }
+  .detail_info2 .badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: #E50914;
+    color: #fff;
+    margin-right: 10px;
+  }
+  .detail_info2 .badge-text {
+    font-size: 16px;
+  }
+  /* 리뷰컴포넌트 */
+  .review-btns {
+    margin-bottom: 40px;
+  }
+  
+  .review-btns button{
+    font-size: 16px;
+    padding: 5px 50px;
+    border-radius: 0;
+  }
+  
+  .review-btn {
+    margin-right: 20px;
+    font-size: 18px;
+    padding: 5px 50px;
+    border-radius: 0;
+    border: 1px solid rgb(243, 54, 54);
+    background-color: transparent;
+    color: rgb(243, 54, 54);
+    transition: .5s;
+  }
+  
+  .review-btn:hover{
+    color: white;
+    background-color: rgb(243, 54, 54);
+  }
+  .review-area {
+    padding: 35px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+  }
+  .review-area h4 {
+    font-weight: 500;
+  }
+  .review-area p {
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0;
+  }
+  .related-btn{
+    color: white;
+    background-color: rgb(243, 54, 54);
+    border: none;
+    transition: .5s;
+  }
+  
+  .related-btn:hover{
+    border: 1px solid rgb(243, 54, 54);
+    background-color: transparent;
+    color: rgb(243, 54, 54);
+  }

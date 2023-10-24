@@ -19,7 +19,7 @@ const Video = () => {
   
         let response = await fetch(url);
         let data = await response.json();
-        setYoutube(data.results[0]);; //비디오 자료는 서버에서 다운로드 받을 때 순차적으로 다운받아서 실행해주므로 인덱스를 명시
+        setYoutube(data.results[0]); //비디오 자료는 서버에서 다운로드 받을 때 순차적으로 다운받아서 실행해주므로 인덱스를 명시
       //console.log(data)
     };
   
@@ -47,7 +47,7 @@ const Video = () => {
                 videoId={youtube?.key}
                 opts={{
                     width: "1080",
-                    height: "740",
+                    height: "840",
                     playerVars: {
                         autoplay: 1, 
                         loop: true
